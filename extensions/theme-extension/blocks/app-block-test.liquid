@@ -1,0 +1,26 @@
+<script src="{{ 'assets/app-block-test.js' | asset_url }}" defer></script>
+<div class="app-block-test">
+    <h2>Featured Products</h2>
+    {% for product in collections.frontpage.products %}
+        <div class="product">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price | money }}</p>
+            <button class="add-to-favorites" data-product-id="{{ product.id }}">Add to Favorites</button>
+        </div>
+    {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "App Block Test",
+  "target": "section",  // or "product-template" depending on your use case
+  "settings": [
+    {
+      "type": "text",
+      "label": "Label",
+      "id": "label"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+<!-- src/blocks/product-comments-block.liquid -->
+<div class="product-comments-block">
+    <h3>Product Comments</h3>
+    <form id="comment-form">
+      <label for="comment">Add a Comment:</label>
+      <textarea name="comment" id="comment" rows="4" required></textarea>
+      <button type="button" onclick="submitComment()">Submit</button>
+    </form>
+    <div class="comments">
+
+      {% if product.comments.size > 0 %}
+        {% for comment in product.comments %}
+          <div class="comment">
+            <p>{{ comment.user }} says:</p>
+            <p>{{ comment.text }}</p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No comments yet.</p>
+      {% endif %}
+    </div>
+  
+    <script>
+      function submitComment() {
+        var commentText = document.getElementById("comment").value;
+        console.log("Comment submitted:", commentText);
+      }
+    </script>
+  </div>
+  
+  
+  {% schema %}
+{
+  "name": "Product Comments",
+  "target": "section",  // or "product-template" depending on your use case
+  "settings": [
+    {
+      "type": "text",
+      "label": "Label",
+      "id": "label"
+    }
+  ]
+}
+{% endschema %}
